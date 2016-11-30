@@ -86,3 +86,6 @@ footer{
   margin: auto;
   height: 100px;
 }
+.template{
+  display: none;
+}
