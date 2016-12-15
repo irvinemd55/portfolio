@@ -13,3 +13,4 @@ portfolioView.handleMainNav = function () {
 };
 
 portfolioView.handleMainNav();
+Projects.fetchAll();

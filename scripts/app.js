@@ -39,3 +39,19 @@ projectObjects.forEach(function(projectsObj) {
 projects.forEach(function(projectsObj) {
   $('#projects').append(projectsObj.toHtml());
 });
+
+Article.fetchAll = function() {
+  if (localStorage.projectObjStor) {
+    var projectObjStor = JSON.parse(localStorage.getItem('projectObjStor'));
+    Article.loadAll(projectObjStor);
+    console.log('data already in localStorage');
+    articleView.renderIndexPage();
+  } else {
+    $.getJSON('projectObjStor.json', function(data){
+      Article.loadAll(data);
+      localStorage.setItem('projectObjStor',JSON.stringify(data));
+      console.log('data not in localStorage yet');
+      articleView.renderIndexPage();
+    });
+  }
+};
