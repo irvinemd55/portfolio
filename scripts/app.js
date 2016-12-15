@@ -1,5 +1,6 @@
 'use strict';
 var projects = [];
+var portfolioView = {}; //added from portfolioView
 
 function Projects (options) {
   this.title = options.title;
@@ -10,6 +11,7 @@ function Projects (options) {
   this.body = options.body;
 };
 Projects.prototype.toHtml = function() {
+
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000);
   this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
   var $source = $('#article-template').html();
@@ -33,16 +35,16 @@ projects.forEach(function(projectsObj) {
   $('#projects').append(projectsObj.toHtml());
 });
 
-Article.fetchAll = function() {
-  if (localStorage.projectObjStor) {
-    var projectObjStor = JSON.parse(localStorage.getItem('projectObjStor'));
-    Article.loadAll(projectObjStor);
-    articleView.renderIndexPage();
-  } else {
-    $.getJSON('projectObjStor.json', function(data){
-      Article.loadAll(data);
-      localStorage.setItem('projectObjStor',JSON.stringify(data));
-      articleView.renderIndexPage();
-    });
-  }
+//portfolioView additions
+portfolioView.handleMainNav = function () {
+  $('.main-nav').on('click', '.tab', function() {
+    $('.tab-content').hide();
+    $('#' + $(this).data('content')).fadeIn();
+
+
+  });
+  $('.main-nav .tab:first').click();
 };
+
+portfolioView.handleMainNav();
+Projects.fetchAll();

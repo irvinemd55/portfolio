@@ -6,6 +6,7 @@
 
     $('#articles').hide();
     $('#about').show();
+    console.log('articles hidden');
   };
 
   module.aboutController = aboutController;
