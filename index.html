@@ -22,17 +22,19 @@
   <section id="profile-picture">
     <img src="http://placehold.it/960X450/000000"/>
     </section>
+  <script id="article-template" type="text/x-handlebars-template">
     <section id="projects" class="tab-content">
       <h1>Projects</h1>
       <article class="template" data-category="irvine">
         <header>
-          <h1>Title</h1>
+          <h1>{{title}}</h1>
             <div class="byline">
-            By <address><a href="">Author Name</a></address>
-            published <time pubdate datetime="2000-01-01">Publish Time</time>
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            {{publishStatus}}}
                 </div>
                 </header>
               <section class="article-body"></section>
+            </script>
         </article>
       </ul>
     </section>
@@ -64,8 +66,9 @@
     </h2>
   </footer>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
   <script type="text/javascript" src="scripts/project_objects.js"></script>
   <script type="text/javascript" src="scripts/app.js"></script>
-  <script type="text/javascript" src="scripts/portfolioView.js"></script>
+  <script type="text/javascript" src="scripts/portfolio_view.js"></script>
   </body>
 </html>
