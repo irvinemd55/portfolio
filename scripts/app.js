@@ -23,13 +23,13 @@ Projects.prototype.toHtml = function() {
   // return $newProjects;
 };
 
-projectObjects.sort(function(currentObject, nextObject) {
-  return (new Date(nextObject.publishedOn)) - (new Date(currentObject.publishedOn));
-});
+// projectObjects.sort(function(currentObject, nextObject) {
+  // return (new Date(nextObject.publishedOn)) - (new Date(currentObject.publishedOn));
+// });
 
-projectObjects.forEach(function(projectsObj) {
-  projects.push(new Projects(projectsObj));
-});
+// projectObjects.forEach(function(projectsObj) {
+  // projects.push(new Projects(projectsObj));
+// });
 
 projects.forEach(function(projectsObj) {
   $('#projects').append(projectsObj.toHtml());
