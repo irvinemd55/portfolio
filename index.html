@@ -2,8 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Portfolio</title>
-    <link href="styles/style.css" rel="stylesheet">
+    <link type="text/css" href="styles/style.css" rel="stylesheet">
+    <script id="article-template" type="text/x-handlebars-template">
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+      <section id="projects" class="tab-content">
+        <h1>Projects</h1>
+        <article class="template" data-category="irvine">
+          <header>
+            <h1>{{title}}</h1>
+              <div class="byline">
+              By <address><a href="{{authorUrl}}">{{author}}</a></address>
+              {{publishStatus}}}
+                  </div>
+                  </header>
+                  <section class="article-body">{{{body}}}</section>
+            <a href="#" class="read-on">Read on &rarr;</a>
+              </article>
+              </script>
+    <script id="repo-template" type="text/x-handlebars-template">
+      <li>
+        <a href="{{html_url}}" target="_blank"><h3>{{name}}</h3></a>
+        <p>Description: {{description}}</p>
+        <p>Primary Language: {{language}}</p>
+        <p>Created: {{created_at}}</p>
+        <p>Last updated: {{updated_at}}</p>
+        </li>
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -12,9 +38,9 @@
         </h1>
         <nav class="main-nav">
         <ul class="nav-list">
-          <li class="tab"><a href="#" class="link">Projects</a></li>
+          <li class="tab"><a href="/" class="link">Projects</a></li>
           <li class="tab"><a href="#" class="link">GitHub</a></li>
-          <li class="tab"><a href="#" class="link">About</a></li>
+          <li class="tab"><a href="/about" class="link">About</a></li>
         </ul>
       </nav>
     </header>
@@ -22,21 +48,9 @@
   <section id="profile-picture">
     <img src="http://placehold.it/960X450/000000"/>
     </section>
-  <script id="article-template" type="text/x-handlebars-template">
-    <section id="projects" class="tab-content">
-      <h1>Projects</h1>
-      <article class="template" data-category="irvine">
-        <header>
-          <h1>{{title}}</h1>
-            <div class="byline">
-            By <address><a href="{{authorUrl}}">{{author}}</a></address>
-            {{publishStatus}}}
-                </div>
-                </header>
-              <section class="article-body"></section>
-            </script>
-        </article>
-      </ul>
+
+
+
     </section>
     <section id="about" class="tab-content">
       <h1>
@@ -65,10 +79,15 @@
       More links incoming
     </h2>
   </footer>
+  <script src="githubToken.js"></script>
+  <script type="text/javascript"src="vendor/page.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
-  <script type="text/javascript" src="scripts/project_objects.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+  <script type="text/javascript" src="scripts/controllers/aboutController.js"></script>
+  <script type="text/javascript" src="scripts/controllers/articleController.js"></script>
+  <script type="text/javascript" src="scripts/controllers/routes.js"></script>
+  <!-- <script type="text/javascript" src="scripts/project_objects.js"></script> -->
   <script type="text/javascript" src="scripts/app.js"></script>
-  <script type="text/javascript" src="scripts/portfolio_view.js"></script>
+  <!-- <script type="text/javascript" src="scripts/portfolio_view.js"></script> -->
   </body>
 </html>

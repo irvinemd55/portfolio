@@ -1,5 +1,6 @@
 'use strict';
 var projects = [];
+var portfolioView = {}; //added from portfolioView
 
 function Projects (options) {
   this.title = options.title;
@@ -10,13 +11,7 @@ function Projects (options) {
   this.body = options.body;
 };
 Projects.prototype.toHtml = function() {
-  // var $newProjects = $('#projects .template').clone();
-  // $newProjects.attr('data-category', this.category);
-  // $newProjects.find('h1').html(this.title);
-  // $newProjects.find('a').html(this.author);
-  // $newProjects.find('a').attr('href', this.authorUrl);
-  // $newProjects.find('.projects-body').html(this.body);
-  // $newProjects.find('time[pubdate]').attr('title', this.publishedOn);
+
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn)) / 60 / 60 / 24 / 1000);
   this.publishStatus = this.publishedOn ? 'published ' + this.daysAgo + ' days ago' : '(draft)';
   var $source = $('#article-template').html();
@@ -28,30 +23,28 @@ Projects.prototype.toHtml = function() {
   // return $newProjects;
 };
 
-projectObjects.sort(function(currentObject, nextObject) {
-  return (new Date(nextObject.publishedOn)) - (new Date(currentObject.publishedOn));
-});
+// projectObjects.sort(function(currentObject, nextObject) {
+  // return (new Date(nextObject.publishedOn)) - (new Date(currentObject.publishedOn));
+// });
 
-projectObjects.forEach(function(projectsObj) {
-  projects.push(new Projects(projectsObj));
-});
+// projectObjects.forEach(function(projectsObj) {
+  // projects.push(new Projects(projectsObj));
+// });
 
 projects.forEach(function(projectsObj) {
   $('#projects').append(projectsObj.toHtml());
 });
 
-Article.fetchAll = function() {
-  if (localStorage.projectObjStor) {
-    var projectObjStor = JSON.parse(localStorage.getItem('projectObjStor'));
-    Article.loadAll(projectObjStor);
-    console.log('data already in localStorage');
-    articleView.renderIndexPage();
-  } else {
-    $.getJSON('projectObjStor.json', function(data){
-      Article.loadAll(data);
-      localStorage.setItem('projectObjStor',JSON.stringify(data));
-      console.log('data not in localStorage yet');
-      articleView.renderIndexPage();
-    });
-  }
+//portfolioView additions
+portfolioView.handleMainNav = function () {
+  $('.main-nav').on('click', '.tab', function() {
+    $('.tab-content').hide();
+    $('#' + $(this).data('content')).fadeIn();
+
+
+  });
+  $('.main-nav .tab:first').click();
 };
+
+portfolioView.handleMainNav();
+Projects.fetchAll();
